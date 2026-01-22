@@ -20,12 +20,27 @@ export default function SearchBar() {
 
 
   return (
-    <input
-      type="text"
-      placeholder="Search products..."
-      value={query}
-      onChange={(e)=> setQuery(e.target.value)}
-      className="w-full p-3 border rounded-md m-4"
-    />
+ <input
+    type="text"
+    placeholder="Search for products, brands..."
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+    className="
+     
+      w-full max-w-md
+      pl-12 pr-4 py-3
+      rounded-full
+      bg-white dark:bg-zinc-900
+      text-gray-900 dark:text-white
+      placeholder-gray-400
+      border border-gray-200 dark:border-zinc-700
+      shadow-sm
+      focus:outline-none
+      focus:ring-2 focus:ring-indigo-500
+      focus:border-indigo-500
+      transition
+      duration-200
+    "
+  />
   )
 }

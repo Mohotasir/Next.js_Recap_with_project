@@ -16,8 +16,10 @@ export default async function page({searchParams}) {
    
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Products</h1>
-      <SearchBar />
+      {/* <h1 className="text-2xl font-bold mb-4">Products</h1> */}
+      <div className='flex justify-center my-6'>
+          <SearchBar />
+      </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-3'>
          {
             products.products.map((p)=>(

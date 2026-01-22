@@ -1,9 +1,10 @@
+import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
   {/* Hero Section */}
-  <section className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+  <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
     
     {/* Left Content */}
     <div>
@@ -34,7 +35,13 @@ export default function Home() {
     {/* Right Image */}
     <div className="relative">
       <div className="absolute -top-6 -left-6 w-full h-full bg-indigo-100 dark:bg-indigo-900 rounded-2xl"></div>
-      
+       <Image
+        src="/home.jpg"
+        alt="Hero Image"
+        width={550}
+        height={500}
+        className="relative rounded-2xl shadow-lg"
+      />
     </div>
 
   </section>

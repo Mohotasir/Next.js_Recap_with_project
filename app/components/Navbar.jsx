@@ -1,11 +1,12 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-
+  const pathname = usePathname()
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
@@ -14,6 +15,13 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const linkClass = (path) =>
+    `text-sm font-semibold transition
+     ${pathname === path
+       ? "text-indigo-600"
+       : "text-gray-900 dark:text-white hover:text-indigo-600"
+     }`
 
   return (
     <nav
@@ -24,11 +32,11 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-center gap-10">
-        <Link href="/" className="text-lg font-semibold hover:text-indigo-600">
+        <Link href="/" className={linkClass("/")}>
           Home
         </Link>
 
-        <Link href="/product" className="text-lg font-semibold hover:text-indigo-600">
+        <Link href="/product" className={linkClass("/product")}>
           Products
         </Link>
       </div>
