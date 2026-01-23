@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import ThemeToggle from "./theme-toggle"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -39,6 +40,7 @@ export default function Navbar() {
         <Link href="/product" className={linkClass("/product")}>
           Products
         </Link>
+        <ThemeToggle />
       </div>
     </nav>
   )
