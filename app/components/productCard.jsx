@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Button } from "../../components/ui/button";
 
 export default function ProductCard({ product }) {
   return (
@@ -57,10 +58,12 @@ export default function ProductCard({ product }) {
         ))}
       </div>
 
-      {/* Button */}
-      <button className="mt-4 w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
+      <Button
+        variant="outline"
+        className="mt-4 w-full"
+      >
         Add to Cart
-      </button>
+      </Button>
     </div>
   );
 }

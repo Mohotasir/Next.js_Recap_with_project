@@ -1,4 +1,5 @@
 import Image from "next/image";
+import UserInfo from "./components/userInfo";
 
 export default function Home() {
   return (
@@ -45,6 +46,7 @@ export default function Home() {
     </div>
 
   </section>
+    <UserInfo />
 </div>
 
   );
