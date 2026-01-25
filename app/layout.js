@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
    return (
       <html lang="en" suppressHydrationWarning>
          <NextAuthSessionPorovider>
-            <body className={`${geistSans.variable} ${geistMono.variable} pt-24 antialiased`}>
+            <body className={`${geistSans.variable} ${geistMono.variable} max-w-7xl mx-auto pt-24 antialiased`}>
                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                   <Navbar />
                   <main>{children}</main>

@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import ThemeToggle from "./theme-toggle"
 import LoginButton from "./LoginButton"
+import RegisterButton from "./RegisterButton"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -33,17 +34,23 @@ export default function Navbar() {
         : "h-24 bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-center gap-10">
-        <Link href="/" className={linkClass("/")}>
+      <div className="max-w-7xl mx-auto h-full px-8 flex items-center justify-between gap-10">
+        <div>
+            <Link href="/" className=" font-extrabold italic text-2xl " >STYLISH</Link>
+        </div>
+         <div className="flex items-center gap-10">
+         <Link href="/" className={linkClass("/")}>
           Home
         </Link>
 
         <Link href="/product" className={linkClass("/product")}>
           Products
         </Link>
+         </div>
          <div className="flex items-center gap-2">
          <ThemeToggle />
          <LoginButton />
+         <RegisterButton />
          </div>
       </div>
     </nav>
