@@ -2,6 +2,34 @@
 import Link from 'next/link'
 import React from 'react'
 
+const handleSubmit = async (e) => {
+   e.preventDefault();
+   const form = e.target;
+ 
+   const data = {
+     username: form.username.value,
+     email: form.email.value,
+     password: form.password.value,
+   }
+   console.log(data)
+   const res = await fetch("/api/auth/register", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify(data),
+   })
+ 
+   const result = await res.json();
+ 
+   if (res.ok) {
+     alert("Registration successful");
+     form.reset();
+   } else {
+     alert(result.error || "Registration failed");
+   }
+ }
+ 
+
+
 export default function RegisterPage() {
    return (
       <div className="mt-6 lg:mt-12 flex items-center justify-center  px-4">
@@ -14,7 +42,7 @@ export default function RegisterPage() {
             </p>
 
             {/* Form */}
-            <form className="mt-6 flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
 
                {/* Username */}
                <div className="flex flex-col gap-1">
@@ -24,6 +52,8 @@ export default function RegisterPage() {
                   <input
                      type="text"
                      placeholder="Enter your username"
+                     name='username'
+                     id='username'
                      className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                      required
                   />
@@ -36,6 +66,8 @@ export default function RegisterPage() {
                   </label>
                   <input
                      type="email"
+                     name='email'
+                     id='email'
                      placeholder="Enter your email"
                      className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                      required
@@ -49,6 +81,8 @@ export default function RegisterPage() {
                   </label>
                   <input
                      type="password"
+                     name='password'
+                     id='password'
                      placeholder="Create a password"
                      className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                      required
