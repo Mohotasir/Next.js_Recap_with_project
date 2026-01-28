@@ -1,8 +1,27 @@
 "use client"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 
 export default function LoginPage() {
+  const [error,seterror] = useState("")
+  const handdlesubmit =async (e)=>{
+    e.preventDefault()
+    const form = e.target
+    const email = form.email.value 
+    const password = form.password.value
+
+    const resposne = await signIn("credentials",
+      {email, password, redirect:false}
+    )
+    if(resposne?.error){
+      seterror(resposne.error)
+    }else{
+      console.log("its ok")
+      alert("successfull!")
+      window.location.href = "/"
+    }
+  }
   return (
     <div className="mt-6 lg:mt-12 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-8">
@@ -13,13 +32,15 @@ export default function LoginPage() {
         <p className="text-sm text-center text-gray-500 mt-2">
           Login to your account
         </p>
-        <form className="mt-6 flex flex-col gap-4">
+        <form onSubmit={handdlesubmit} className="mt-6 flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Email
             </label>
             <input
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder="Enter your email"
               className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-700"
               required
@@ -31,7 +52,9 @@ export default function LoginPage() {
             </label>
             <input
               type="password"
+              name="password"
               placeholder="Enter your password"
+              autoComplete="current-password"
               className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-700"
               required
             />
@@ -50,6 +73,9 @@ export default function LoginPage() {
           >
             Login
           </button>
+          {
+            error && <p className="text-red-400">{error}</p>
+          }
         </form>
         <p className="text-sm text-center text-gray-600 mt-6">
           Don’t have an account?{" "}
